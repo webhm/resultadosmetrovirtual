@@ -3,18 +3,25 @@ import { urlIframe } from "../services/patient";
 import { ref, onMounted, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import IframeViewer from "../components/IframeViewer.vue";
-
+import { useNotification } from "@kyvg/vue3-notification";
 const route = useRoute();
 const router = useRouter();
-
+const { notify } = useNotification();
 const isLoading = ref(false);
 const isAvailable = ref(false);
 const props = defineProps(["id"]);
 const id = ref(props.id);
+console.log('id', id.value);
+const position_key = ref(id.value.indexOf("&key"));
+console.log('position_key', position_key.value);
+const final_id = ref(position_key.value !== -1 ? id.value.substring(0, position_key.value) : id.value);
+console.log('final_id', final_id.value);
 const exam_id = ref(null);
 const title = ref("Zero FootPrint GE - Metrovirtual - Hospital Metropolitano");
 const shareLink = computed(() => `${window.location.origin}/viewer/${id.value}`);
-onMounted(() => {});
+onMounted(() => {
+  getUrl();
+});
 
 const goBack = () => {
   window.close();
@@ -28,13 +35,13 @@ const goBack = () => {
   //   router.replace({ name: "dashboard" });
   // }
 };
-const getUrl = async (url) => {
+const getUrl = async () => {
   try {
+    console.log('aqui');
     isLoading.value = true;
-    let data = {
-      id: id.value
-    };
-    let response = await urlIframe(`https://api.hospitalmetropolitano.org/v2/pacientes/resultado/i/?id=${url}`);
+    let response = await urlIframe({
+      id: final_id.value
+    });
     console.log("response", response);
     if (response.status) {
       exam_id.value = response.id;

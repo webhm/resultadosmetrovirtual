@@ -6,9 +6,7 @@ import ImageResultView from "../views/ImageResultView.vue";
 import ZeroItemView from "../views/ZeroItemView.vue";
 import NotFoundView from "../views/NotFoundView.vue";
 
-const {notify} = useNotification();
 
-let language = "es";
 const router = createRouter({
     history: createWebHistory(),
     scrollBehavior(to, from, savedPosition) {

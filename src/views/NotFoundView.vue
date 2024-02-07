@@ -26,8 +26,6 @@ const goTo = async (name) => {
                 Página no encontrada
               </h4>
             </div>
-            <button class="text-center cursor-pointer py-4 btn-loginv3 " style="margin: auto"
-                    @click="goTo('dashboard')">Ingresar</button>
           </div>
         </div>
       </div>

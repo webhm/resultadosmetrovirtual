@@ -2,7 +2,7 @@
 import { computed, onMounted, ref } from "vue";
 import pdf from "@jbtje/vite-vue3pdf";
 import printJS from "print-js";
-import { encryptId } from "../services/security";
+//import { encryptId } from "../services/security";
 
 import { useNotification } from "@kyvg/vue3-notification";
 
@@ -17,7 +17,7 @@ const name = ref(props.name);
 const pageType = ref(props.type);
 const type = ref(null);
 const nhc = ref(props.nhc);
-const encryptedNHC = ref(encryptId(nhc.value));
+//const encryptedNHC = ref(encryptId(nhc.value));
 
 const currentPage = ref(1);
 const numPages = ref(1);

@@ -61,7 +61,7 @@ const getUrl = async (url) => {
       type: "error"
     });
     if(e.message === 'Unauthorized'){
-      await authStore.logout();
+
       await router.replace({ name: "ingreso" });
     }
   }
